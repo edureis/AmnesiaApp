@@ -5,6 +5,8 @@
 *.sw[mnpcod]
 *.log
 *.tmp
+*.js
+*.map
 *.tmp.*
 log.txt
 *.sublime-project
@@ -16,7 +18,10 @@ npm-debug.log*
 .tmp/
 .versions/
 coverage/
+www/*
 www/
+/www/*
+/www/
 dist/
 node_modules/
 tmp/
