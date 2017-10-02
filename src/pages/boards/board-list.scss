@@ -1,0 +1,36 @@
+board-list {
+
+    .page-title {
+        color: #1C6CE9;
+        font-size: 23pt;
+        text-align: center;
+    }
+
+    ion-searchbar .searchbar-input-container {
+        border: 1px solid #DCDCDC;
+    }
+
+    ion-searchbar .searchbar-input {
+        box-shadow: inherit !important;
+    }
+
+    .board-list-row {
+        margin-top: 10px;
+    }
+    
+    .board-item {
+        cursor: pointer;
+        border: 1px solid #DCDCDC;
+    }
+
+    .board-list-title {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .board-list-description {
+        padding: 20px 0;
+        text-align: center;
+    }
+
+}

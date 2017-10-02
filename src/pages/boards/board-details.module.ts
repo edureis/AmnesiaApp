@@ -1,16 +1,16 @@
 import { NgModule }                 from '@angular/core';
 import { IonicPageModule }          from 'ionic-angular';
-import { QuadroDetalheComponent }   from './quadro-detalhe';
+import { BoardDetailsComponent }    from './board-details';
 
 @NgModule({
     declarations: [
-        QuadroDetalheComponent
+        BoardDetailsComponent
     ],
     imports: [
-        IonicPageModule.forChild(QuadroDetalheComponent)
+        IonicPageModule.forChild(BoardDetailsComponent)
     ],
     entryComponents: [ ],
     providers: [ ]
 })
 
-export class QuadroDetalheComponentModule {}
+export class BoardDetailsComponentModule {}

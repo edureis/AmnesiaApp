@@ -1,16 +1,16 @@
 import { NgModule }                 from '@angular/core';
 import { IonicPageModule }          from 'ionic-angular';
-import { QuadrosComponent }         from "./quadros";
+import { BoardListComponent }       from "./board-list";
 
 @NgModule({
     declarations: [
-        QuadrosComponent
+        BoardListComponent
     ],
     imports: [
-        IonicPageModule.forChild(QuadrosComponent)
+        IonicPageModule.forChild(BoardListComponent)
     ],
     entryComponents: [ ],
     providers: [ ]
 })
 
-export class QuadrosComponentModule {}
+export class BoardListComponentModule {}

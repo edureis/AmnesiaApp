@@ -1,0 +1,44 @@
+<!-- <ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle icon-only>
+            <ion-icon name="menu"></ion-icon>
+        </button>        
+        <ion-title>Detalhe do quadro</ion-title>
+    </ion-navbar>
+</ion-header> -->
+
+<ion-content no-padding *ngIf="board">
+    <ion-grid fixed>
+        <h2 class="page-title">Detalhe do quadro</h2>
+
+        <ion-row class="board-detail-row">
+            <div class="input-block" col-12>
+                <ion-col col-3>
+                    <ion-icon md="ios-bulb"></ion-icon>
+                </ion-col>
+
+                <ion-col col-3>
+                    <span>Titulo</span>
+                </ion-col>
+
+                <ion-col col-9>
+                    <input [(ngModel)]="board.titulo"/>
+                </ion-col>
+            </div>
+
+            <div class="input-block" col-12>
+                <ion-col col-3>
+                    <span>Descrição</span>
+                </ion-col>
+
+                <ion-col col-9>
+                    <input [(ngModel)]="board.descricao"/>
+                </ion-col>
+            </div>
+        </ion-row>
+        
+        <button ion-button col-12>Salvar</button>
+        <button ion-button clear col-12>Cancelar</button>
+    </ion-grid>
+
+</ion-content>

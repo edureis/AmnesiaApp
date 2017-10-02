@@ -1,31 +1,32 @@
 import { Component }                from '@angular/core';
 import { NavController,
          IonicPage }                from 'ionic-angular';
+import { Board }                    from '../../interfaces/board';
 
 @IonicPage({
-    name: "quadros",
-    segment: "quadros"
+    name: "boards",
+    segment: "boards"
 })
 
 @Component({
-    selector: 'page-quadros',
-    templateUrl: 'quadros.html'
+    selector: 'board-list',
+    templateUrl: 'board-list.html'
 })
 
-export class QuadrosComponent {
+export class BoardListComponent {
 
-    public quadros: Array<Object>;
+    public boards: Array<Board>;
 
     constructor(
         public navCtrl: NavController
     ) { }
 
     ngOnInit() {
-        this.getQuadros();
+        this.getBoards();
     }
 
-    getQuadros() {
-        this.quadros = [
+    getBoards() {
+        this.boards = [
             {
                 "id": 1,
                 "titulo": "Quadro 1",
@@ -59,11 +60,21 @@ export class QuadrosComponent {
         ]
     }
     
-    goToDetalheQuadros(quadro: Object) {
-        this.navCtrl.push('quadro/show', {
-            id: quadro['id'],
-            quadro: quadro
+    goToBoardDetails(board: Board) {
+        this.navCtrl.push('board/show', {
+            id: board['id'],
+            board: board
         });
+    }
+
+    searchBoard($event) {
+        this.getBoards();
+        let searchTerm = $event.target.value;
+
+        if (searchTerm && searchTerm.trim() != '')
+            this.boards = this.boards.filter((board) => {
+                return (board.titulo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+            });
     }
 
 }

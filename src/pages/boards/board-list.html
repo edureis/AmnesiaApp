@@ -1,0 +1,25 @@
+<ion-content no-padding>
+    <ion-grid fixed>
+        <h2 class="page-title">Quadros</h2>
+
+        <ion-searchbar placeholder="Pesquise pelo título do quadro"
+            name="Pesquisa" id="quadros-search1"
+            (ionInput)="searchBoard($event)">
+        </ion-searchbar>
+
+        <ion-row class="board-list-row">
+            <ion-col col-12 *ngFor="let board of boards">
+                <div color="positive" (click)="goToBoardDetails(board)" class="board-item">
+                    <div class="board-list-title">
+                        <span>{{board.titulo}}</span>
+                    </div>
+
+                    <div class="board-list-description">
+                        <span>{{board.descricao}}</span>
+                    </div>
+                    <ion-note item-right></ion-note>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
