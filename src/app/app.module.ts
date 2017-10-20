@@ -1,24 +1,33 @@
-import { BrowserModule }        from '@angular/platform-browser';
+import { BrowserModule }            from '@angular/platform-browser';
 import { ErrorHandler,
-         NgModule }             from '@angular/core';
+         NgModule }                 from '@angular/core';
 import { IonicApp,
          IonicErrorHandler,
-         IonicModule }          from 'ionic-angular';
+         IonicModule }              from 'ionic-angular';
+import { StatusBar }                from '@ionic-native/status-bar';
+import { SplashScreen }             from '@ionic-native/splash-screen';
+import { Http, HttpModule }         from '@angular/http';
 
-import { App }                  from './app.component';
-import { HomePage }             from '../pages/home/home';
-import { ListPage }             from '../pages/list/list';
+// Components and Pages
+import { App }                      from './app.component';
+import { HomePage }                 from '../pages/home/home';
+import { ListPage }                 from '../pages/list/list';
+import { LoginComponent }           from '../pages/login/login';
 
-import { StatusBar }            from '@ionic-native/status-bar';
-import { SplashScreen }         from '@ionic-native/splash-screen';
+// Services
+import { AppService }               from '../services/app.service';
+import { LoginService }             from '../services/login.service';
+
 
 @NgModule({
     declarations: [
         App,
         HomePage,
-        ListPage
+        ListPage,
+        LoginComponent
     ],
     imports: [
+        HttpModule,
         BrowserModule,
         IonicModule.forRoot(App),
     ],
@@ -26,9 +35,12 @@ import { SplashScreen }         from '@ionic-native/splash-screen';
     entryComponents: [
         App,
         HomePage,
-        ListPage
+        ListPage,
+        LoginComponent
     ],
     providers: [
+        AppService,
+        LoginService,
         StatusBar,
         SplashScreen,
         {

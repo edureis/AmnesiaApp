@@ -1,12 +1,52 @@
 webpackJsonp([0],{
 
-/***/ 194:
+/***/ 263:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return QuadrosComponent; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardListComponentModule", function() { return BoardListComponentModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__board_list__ = __webpack_require__(265);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var BoardListComponentModule = (function () {
+    function BoardListComponentModule() {
+    }
+    return BoardListComponentModule;
+}());
+BoardListComponentModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__board_list__["a" /* BoardListComponent */]
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__board_list__["a" /* BoardListComponent */])
+        ],
+        entryComponents: [],
+        providers: []
+    })
+], BoardListComponentModule);
+
+//# sourceMappingURL=board-list.module.js.map
+
+/***/ }),
+
+/***/ 265:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BoardListComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,15 +58,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var QuadrosComponent = (function () {
-    function QuadrosComponent(navCtrl) {
+var BoardListComponent = (function () {
+    function BoardListComponent(navCtrl) {
         this.navCtrl = navCtrl;
     }
-    QuadrosComponent.prototype.ngOnInit = function () {
-        this.getQuadros();
+    BoardListComponent.prototype.ngOnInit = function () {
+        this.getBoards();
     };
-    QuadrosComponent.prototype.getQuadros = function () {
-        this.quadros = [
+    BoardListComponent.prototype.getBoards = function () {
+        this.boards = [
             {
                 "id": 1,
                 "titulo": "Quadro 1",
@@ -59,66 +99,34 @@ var QuadrosComponent = (function () {
             }
         ];
     };
-    QuadrosComponent.prototype.goToDetalheQuadros = function (quadro) {
-        this.navCtrl.push('quadro/show', {
-            id: quadro['id'],
-            quadro: quadro
+    BoardListComponent.prototype.goToBoardDetails = function (board) {
+        this.navCtrl.push('board/show', {
+            id: board['id'],
+            board: board
         });
     };
-    return QuadrosComponent;
+    BoardListComponent.prototype.searchBoard = function ($event) {
+        this.getBoards();
+        var searchTerm = $event.target.value;
+        if (searchTerm && searchTerm.trim() != '')
+            this.boards = this.boards.filter(function (board) {
+                return (board.titulo.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+            });
+    };
+    return BoardListComponent;
 }());
-QuadrosComponent = __decorate([
+BoardListComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPage */])({
-        name: "quadros",
-        segment: "quadros"
+        name: "boards",
+        segment: "boards"
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-quadros',template:/*ion-inline-start:"/home/eduardoreis/AmnesiaApp/src/pages/quadros/quadros.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle icon-only>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title *ngIf="quadro">{{quadro.titulo}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding id="page1">\n    <ion-grid fixed>\n        <h2 id="quadros-heading1" style="color:#1C6CE9;text-align:center;">\n            Quadros\n        </h2>\n\n        <ion-searchbar placeholder="Pesquise pelo título do quadro"\n            name="Pesquisa" id="quadros-search1" class="PesquisarQuadro">\n        </ion-searchbar>\n\n        <div class="spacer" style="height:25px;" id="quadros-spacer3"></div>\n\n        <ion-row>\n            <ion-col col-4 *ngFor="let quadro of quadros">\n                <div color="positive" (click)="goToDetalheQuadros(quadro)" class="item-quadro">\n                    <div class="lista-quadro-title">\n                        <span>{{quadro.titulo}}</span>\n                    </div>\n\n                    <div class="lista-quadro-descricao">\n                        <span>{{quadro.descricao}}</span>\n                    </div>\n                    <ion-note item-right></ion-note>\n                </div>\n            </ion-col>\n        </ion-row>\n\n        <ion-card id="quadros-card21">\n            <ion-list></ion-list>\n        </ion-card>\n    </ion-grid>\n</ion-content>'/*ion-inline-end:"/home/eduardoreis/AmnesiaApp/src/pages/quadros/quadros.html"*/
+        selector: 'board-list',template:/*ion-inline-start:"/home/eduardo/Documentos/projetos/AmnesiaApp/src/pages/boards/board-list.html"*/'<ion-content no-padding>\n    <ion-grid fixed>\n        <h2 class="page-title">Quadros</h2>\n\n        <ion-searchbar placeholder="Pesquise pelo título do quadro"\n            name="Pesquisa" id="quadros-search1"\n            (ionInput)="searchBoard($event)">\n        </ion-searchbar>\n\n        <ion-row class="board-list-row">\n            <ion-col col-12 *ngFor="let board of boards">\n                <div color="positive" (click)="goToBoardDetails(board)" class="board-item">\n                    <div class="board-list-title">\n                        <span>{{board.titulo}}</span>\n                    </div>\n\n                    <div class="board-list-description">\n                        <span>{{board.descricao}}</span>\n                    </div>\n                    <ion-note item-right></ion-note>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>'/*ion-inline-end:"/home/eduardo/Documentos/projetos/AmnesiaApp/src/pages/boards/board-list.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
-], QuadrosComponent);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
+], BoardListComponent);
 
-//# sourceMappingURL=quadros.js.map
-
-/***/ }),
-
-/***/ 264:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuadrosComponentModule", function() { return QuadrosComponentModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__quadros__ = __webpack_require__(194);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var QuadrosComponentModule = (function () {
-    function QuadrosComponentModule() {
-    }
-    return QuadrosComponentModule;
-}());
-QuadrosComponentModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__quadros__["a" /* QuadrosComponent */]
-        ],
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__quadros__["a" /* QuadrosComponent */])
-        ],
-        entryComponents: [],
-        providers: []
-    })
-], QuadrosComponentModule);
-
-//# sourceMappingURL=quadros.module.js.map
+//# sourceMappingURL=board-list.js.map
 
 /***/ })
 

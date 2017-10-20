@@ -25199,17 +25199,59 @@ ion-navbar.toolbar {
   }
 }
 
-page-quadros .item-quadro {
+board-details .item-md {
+  padding-left: 0px;
+}
+
+board-details ion-icon {
+  font-size: 23pt !important;
+}
+
+board-details input {
+  border: inherit;
+}
+
+board-details .page-title {
+  color: #1C6CE9;
+  font-size: 23pt;
+  text-align: center;
+}
+
+board-details .input-block {
+  border: 1px solid #DCDCDC;
+  padding: 10px 10px;
+}
+
+board-list .page-title {
+  color: #1C6CE9;
+  font-size: 23pt;
+  text-align: center;
+}
+
+board-list ion-searchbar .searchbar-input-container {
+  border: 1px solid #DCDCDC;
+}
+
+board-list ion-searchbar .searchbar-input {
+  -webkit-box-shadow: inherit !important;
+  box-shadow: inherit !important;
+}
+
+board-list .board-list-row {
+  margin-top: 10px;
+}
+
+board-list .board-item {
   cursor: pointer;
-  border: 1px solid royalblue;
+  border: 1px solid #DCDCDC;
 }
 
-page-quadros .lista-quadro-title {
-  text-align: center;
+board-list .board-list-title {
   padding: 10px 0;
+  text-align: center;
 }
 
-page-quadros .lista-quadro-descricao {
-  text-align: center;
+board-list .board-list-description {
   padding: 20px 0;
+  text-align: center;
 }
