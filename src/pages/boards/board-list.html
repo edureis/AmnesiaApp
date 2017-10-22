@@ -1,7 +1,14 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Quadros</ion-title>
+    </ion-navbar>
+</ion-header>
+
 <ion-content no-padding>
     <ion-grid fixed>
-        <h2 class="page-title">Quadros</h2>
-
         <ion-searchbar placeholder="Pesquise pelo título do quadro"
             name="Pesquisa" id="quadros-search1"
             (ionInput)="searchBoard($event)">
@@ -22,4 +29,4 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-</ion-content>
+</ion-content> 

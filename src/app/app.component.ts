@@ -1,12 +1,16 @@
 import { Component, ViewChild }     from '@angular/core';
-import { Nav, Platform }            from 'ionic-angular';
+import { Nav, Platform,
+         MenuController, 
+         ToastController}           from 'ionic-angular';
 import { StatusBar }                from '@ionic-native/status-bar';
 import { SplashScreen }             from '@ionic-native/splash-screen';
 
-import { HomePage }                 from '../pages/home/home';
-import { ListPage }                 from '../pages/list/list';
+// Components
 import { LoginComponent }           from '../pages/login/login';
 import { BoardListComponent }       from '../pages/boards/board-list';
+
+// Services
+import { LoginService }             from "../services/login.service";
 
 @Component({
     templateUrl: 'app.html'
@@ -19,11 +23,12 @@ export class App {
     constructor(
         public platform: Platform,
         public statusBar: StatusBar,
-        public splashScreen: SplashScreen
+        public splashScreen: SplashScreen,
+        private menu: MenuController,
+        private toastCtrl: ToastController,
+        private _login: LoginService
     ) {
         this.pages = [
-            { title: 'Home', component: HomePage },
-            { title: 'List', component: ListPage },
             { title: 'Quadros', component: 'boards' }
         ];
     }
@@ -31,9 +36,9 @@ export class App {
     ngOnInit() {
         this.initializeApp();
 		if (localStorage.getItem('token'))
-            this.nav.setRoot(HomePage)
+            this.nav.setRoot('boards')
         else
-            this.nav.setRoot(LoginComponent);
+            this.nav.setRoot('login');
     }
 
     initializeApp() {
@@ -45,5 +50,19 @@ export class App {
 
     openPage(page) {
         this.nav.setRoot(page.component);
+    }
+
+    doLogout() {
+        this._login.doLogout().subscribe(response => {
+            if (this.menu.isOpen())
+                this.menu.close();
+            this.nav.setRoot('login');
+        }, error => {
+            this.toastCtrl.create({
+                message: "Erro ao fazer Logout!",
+                duration: 4030,
+                position: 'bottom'
+            }).present();
+        });
     }
 }

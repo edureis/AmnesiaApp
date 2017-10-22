@@ -10,9 +10,6 @@ import { Http, HttpModule }         from '@angular/http';
 
 // Components and Pages
 import { App }                      from './app.component';
-import { HomePage }                 from '../pages/home/home';
-import { ListPage }                 from '../pages/list/list';
-import { LoginComponent }           from '../pages/login/login';
 
 // Services
 import { AppService }               from '../services/app.service';
@@ -21,10 +18,7 @@ import { LoginService }             from '../services/login.service';
 
 @NgModule({
     declarations: [
-        App,
-        HomePage,
-        ListPage,
-        LoginComponent
+        App
     ],
     imports: [
         HttpModule,
@@ -33,10 +27,7 @@ import { LoginService }             from '../services/login.service';
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        App,
-        HomePage,
-        ListPage,
-        LoginComponent
+        App
     ],
     providers: [
         AppService,

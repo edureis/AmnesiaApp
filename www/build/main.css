@@ -25255,3 +25255,57 @@ board-list .board-list-description {
   padding: 20px 0;
   text-align: center;
 }
+
+login .item-ios,
+login .item-md {
+  padding-left: 0px !important;
+}
+
+login ion-list .item .item-inner {
+  border-bottom: 2px solid transparent;
+}
+
+login ion-item .item-inner {
+  border: 0.55px solid #CCC;
+}
+
+login ion-label {
+  padding-left: 15px;
+  color: #444 !important;
+}
+
+login ion-input {
+  font-size: 11pt;
+}
+
+login .login-form-field:first-of-type .item-inner {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom: 0.55px solid transparent;
+}
+
+login .login-form-field:last-of-type .item-inner {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+login .login-submit {
+  margin-top: 50px;
+}
+
+login .login-submit button {
+  height: 4.6rem;
+  font-size: 1.7rem;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+login .bottom-block {
+  font-size: 12pt;
+  padding: 20px 0px;
+  text-align: center;
+}
+
+login .bottom-block a {
+  text-decoration: none;
+}

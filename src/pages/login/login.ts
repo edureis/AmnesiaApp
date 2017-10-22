@@ -1,9 +1,17 @@
 import { Component }            from '@angular/core';
 import { MenuController,
          NavController, 
-         ToastController}       from 'ionic-angular';
+		 ToastController,
+		 IonicPage,
+		 LoadingController }	from 'ionic-angular';
 
+// Services
 import { LoginService }         from '../../services/login.service';
+
+@IonicPage({
+    name: "login",
+    segment: "login"
+})
 
 @Component({
     selector: 'login',
@@ -18,19 +26,24 @@ export class LoginComponent {
     
     constructor(
         private navCtrl: NavController,
-        private toastController: ToastController,
-        private login: LoginService,
-        private menu: MenuController
-    ) { }
+        private toastCtrl: ToastController,
+		private menu: MenuController,
+		private loadingCtrl: LoadingController,
+        private _login: LoginService,
+	) { }
+
+	ionViewDidLoad() {
+		this.menu.swipeEnable(false);
+	}
 
 	doLogin() {
-        this.ShowLoadingLogin = true;
-		this.login.doLogin(this.email, this.password).subscribe(
+		this.ShowLoadingLogin = true;
+		this._login.doLogin(this.email, this.password).subscribe(
 			result => {
 				this.menu.swipeEnable(true);
-				this.navCtrl.setRoot('home');
+				this.navCtrl.setRoot('boards');
 			}, error => {
-				this.toastController.create({
+				this.toastCtrl.create({
 					message: "Login falhou, dados inválidos!",
 					duration: 4030,
 					position: 'bottom'

@@ -3,34 +3,37 @@
 		<ion-row>
 			<ion-col col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 col-xs-12>
 				<form #form="ngForm" (ngSubmit)="doLogin()">
-					<ion-list class="form-list">
-						<ion-item>
-							<ion-label floating>Email</ion-label>
+					<ion-item class="login-form-field">
+						<ion-label fixed>Login</ion-label>
+						<ion-input type="email" id="email" name="email"
+							placeholder="Digite seu login" [(ngModel)]="email">
+						</ion-input>
+					</ion-item>
 
-							<ion-input type="email" id="email" name="email"
-								[(ngModel)]="email">
-							</ion-input>
-                        </ion-item>
+					<ion-item class="login-form-field">
+						<ion-label fixed>Senha</ion-label>              
+						<ion-input type="password" clearOnEdit="false" 
+							placeholder="Digite sua senha"
+							name="password" [(ngModel)]="password">
+						</ion-input>
+					</ion-item>
 
-						<ion-item>
-                            <ion-label floating>Senha</ion-label>
-                            
-							<ion-input type="password" clearOnEdit="false" 
-								name="password" [(ngModel)]="password">
-							</ion-input>
-						</ion-item>
-
-						<div class="login-submit">
-							<button id="submitLogin" ion-button large full type="submit">
-								Login
-							</button>
-		
-							<div class="progress" *ngIf="ShowLoadingLogin">
-								<div class="indeterminate"></div>
-							</div>
+					<div class="login-submit">
+						<button id="submitLogin" ion-button full type="submit">
+							Entrar
+						</button>		
+						<div class="progress" *ngIf="ShowLoadingLogin">
+							<div class="indeterminate"></div>
 						</div>
-					</ion-list>
+					</div>
 				</form>
+
+				<div class="bottom-block">
+					<a href="">Criar Conta</a>
+				</div>
+				<div class="bottom-block">
+					<a href="">Esqueci minha senha</a>
+				</div>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
