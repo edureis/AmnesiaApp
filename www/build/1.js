@@ -123,7 +123,7 @@ BoardListComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'board-list',template:/*ion-inline-start:"/home/eduardo/AmnesiaApp/src/pages/boards/board-list.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Quadros</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n    <ion-grid fixed>\n        <ion-searchbar placeholder="Pesquise pelo título do quadro"\n            name="Pesquisa" id="quadros-search1"\n            (ionInput)="searchBoard($event)">\n        </ion-searchbar>\n\n        <ion-row class="board-list-row">\n            <ion-col col-12 *ngFor="let board of boards">\n                <div color="positive" (click)="goToBoardDetails(board)" class="board-item">\n                    <div class="board-list-title">\n                        <span>{{board.titulo}}</span>\n                    </div>\n\n                    <div class="board-list-description">\n                        <span>{{board.descricao}}</span>\n                    </div>\n                    <ion-note item-right></ion-note>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content> '/*ion-inline-end:"/home/eduardo/AmnesiaApp/src/pages/boards/board-list.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]])
 ], BoardListComponent);
 
 //# sourceMappingURL=board-list.js.map

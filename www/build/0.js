@@ -62,11 +62,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Services
 
 var LoginComponent = (function () {
-    function LoginComponent(navCtrl, toastCtrl, _login, menu) {
+    function LoginComponent(navCtrl, toastCtrl, menu, loadingCtrl, _login) {
         this.navCtrl = navCtrl;
         this.toastCtrl = toastCtrl;
-        this._login = _login;
         this.menu = menu;
+        this.loadingCtrl = loadingCtrl;
+        this._login = _login;
     }
     LoginComponent.prototype.ionViewDidLoad = function () {
         this.menu.swipeEnable(false);
@@ -96,12 +97,10 @@ LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'login',template:/*ion-inline-start:"/home/eduardo/AmnesiaApp/src/pages/login/login.html"*/'<ion-content class="login">\n	<ion-grid fixed>\n		<ion-row>\n			<ion-col col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 col-xs-12>\n				<form #form="ngForm" (ngSubmit)="doLogin()">\n					<ion-item class="login-form-field">\n						<ion-label fixed>Login</ion-label>\n						<ion-input type="email" id="email" name="email"\n							placeholder="Digite seu login" [(ngModel)]="email">\n						</ion-input>\n					</ion-item>\n\n					<ion-item class="login-form-field">\n						<ion-label fixed>Senha</ion-label>              \n						<ion-input type="password" clearOnEdit="false" \n							placeholder="Digite sua senha"\n							name="password" [(ngModel)]="password">\n						</ion-input>\n					</ion-item>\n\n					<div class="login-submit">\n						<button id="submitLogin" ion-button full type="submit">\n							Entrar\n						</button>		\n						<div class="progress" *ngIf="ShowLoadingLogin">\n							<div class="indeterminate"></div>\n						</div>\n					</div>\n				</form>\n\n				<div class="bottom-block">\n					<a href="">Criar Conta</a>\n				</div>\n				<div class="bottom-block">\n					<a href="">Esqueci minha senha</a>\n				</div>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/home/eduardo/AmnesiaApp/src/pages/login/login.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */],
-        __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* MenuController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */]) === "function" && _e || Object])
 ], LoginComponent);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=login.js.map
 
 /***/ })
