@@ -17,8 +17,9 @@ export class LoginService {
             let headers = new Headers({
                 'Content-Type': 'application/json',
                 'Auth-Key': 'amnesia',
-                'Client-Service': 'frontend-client'
-            });
+                'Client-Service': 'frontend-client',
+                'Access-Control-Allow-Origin': '*'
+            });            
             let options = new RequestOptions({ headers: headers });
             let params: JSON = JSON.parse('{}');
             params["email"] = email;
@@ -27,7 +28,7 @@ export class LoginService {
                 .subscribe(
                     data => {
                         let response = data.json();
-                        if (response['status'] == 200 && response['message'] == 'Login autorizado.') {
+                        if (response['status'] == 200) {                            
                             localStorage.setItem('token', response['token']);
                             localStorage.setItem('user_id', response['id']);
                             localStorage.setItem('user_data', JSON.stringify(response['current-user']));

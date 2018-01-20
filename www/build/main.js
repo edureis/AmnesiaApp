@@ -293,7 +293,8 @@ var LoginService = (function () {
             var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
                 'Content-Type': 'application/json',
                 'Auth-Key': 'amnesia',
-                'Client-Service': 'frontend-client'
+                'Client-Service': 'frontend-client',
+                'Access-Control-Allow-Origin': '*'
             });
             var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
             var params = JSON.parse('{}');
@@ -302,7 +303,7 @@ var LoginService = (function () {
             _this._http.post(_this._app.apiUrl() + '/auth/login', JSON.stringify(params), options)
                 .subscribe(function (data) {
                 var response = data.json();
-                if (response['status'] == 200 && response['message'] == 'Login autorizado.') {
+                if (response['status'] == 200) {
                     localStorage.setItem('token', response['token']);
                     localStorage.setItem('user_id', response['id']);
                     localStorage.setItem('user_data', JSON.stringify(response['current-user']));
@@ -351,10 +352,10 @@ var LoginService = (function () {
 }());
 LoginService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_service__["a" /* AppService */]) === "function" && _b || Object])
 ], LoginService);
 
+var _a, _b;
 //# sourceMappingURL=login.service.js.map
 
 /***/ })
