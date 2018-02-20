@@ -3,8 +3,11 @@ import { Http, Headers,
          RequestOptions }   from '@angular/http';
 import { Observable }       from 'rxjs/Observable';
 import { AppService }       from './app.service';
+import { ViewChild }        from '@angular/core';
+import { ReCaptchaComponent } from 'angular2-recaptcha';
 
 @Injectable()
+
 export class LoginService {
 
     constructor(

@@ -7,6 +7,7 @@ import { MenuController,
 
 // Services
 import { LoginService }         from '../../services/login.service';
+import { Http } from '@angular/http';
 
 @IonicPage({
     name: "login",
@@ -29,7 +30,8 @@ export class LoginComponent {
         private toastCtrl: ToastController,
 		private menu: MenuController,
 		private loadingCtrl: LoadingController,
-        private _login: LoginService,
+		private _login: LoginService,
+		private http: Http,
 	) { }
 
 	ionViewDidLoad() {
@@ -50,7 +52,7 @@ export class LoginComponent {
 				}).present();
 				this.ShowLoadingLogin = false;
 			}
-		);
+		);	
 	}
 
 }
