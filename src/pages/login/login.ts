@@ -24,7 +24,8 @@ export class LoginComponent {
 	email: string;
 	password: string;
 	ShowLoadingLogin: boolean;
-    
+	RECaptchaCode: string;
+
     constructor(
         private navCtrl: NavController,
         private toastCtrl: ToastController,
@@ -38,9 +39,15 @@ export class LoginComponent {
 		this.menu.swipeEnable(false);
 	}
 
+	private  getRecaptcha (Code: string):void{
+		this.RECaptchaCode  =  Code;
+
+  	}
+	 
+ 
 	doLogin() {
 		this.ShowLoadingLogin = true;
-		this._login.doLogin(this.email, this.password).subscribe(
+		this._login.doLogin(this.email, this.password, this.RECaptchaCode).subscribe(
 			result => {
 				this.menu.swipeEnable(true);
 				this.navCtrl.setRoot('boards');

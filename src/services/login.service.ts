@@ -15,7 +15,7 @@ export class LoginService {
         private _app: AppService,
     ) { }
 
-    doLogin(email: string, password: string): Observable<boolean> {
+    doLogin(email: string, password: string, RECaptchaCode: string): Observable<boolean> {
         return new Observable<boolean>(observer => {
             let headers = new Headers({
                 'Content-Type': 'application/json',
@@ -27,6 +27,7 @@ export class LoginService {
             let params: JSON = JSON.parse('{}');
             params["email"] = email;
             params["password"] = password;
+            params["recaptcha"] = RECaptchaCode;
             this._http.post(this._app.apiUrl() + '/auth/login', JSON.stringify(params), options)
                 .subscribe(
                     data => {

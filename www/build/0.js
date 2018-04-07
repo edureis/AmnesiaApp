@@ -1,6 +1,50 @@
 webpackJsonp([0],{
 
-/***/ 152:
+/***/ 263:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardListComponentModule", function() { return BoardListComponentModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var BoardListComponentModule = (function () {
+    function BoardListComponentModule() {
+    }
+    return BoardListComponentModule;
+}());
+BoardListComponentModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginComponent */]
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginComponent */]),
+            __WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha__["ReCaptchaModule"],
+        ],
+        entryComponents: [],
+        providers: []
+    })
+], BoardListComponentModule);
+
+//# sourceMappingURL=login.module.js.map
+
+/***/ }),
+
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8,7 +52,7 @@ webpackJsonp([0],{
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(15);
-var captcha_service_1 = __webpack_require__(153);
+var captcha_service_1 = __webpack_require__(267);
 var ReCaptchaComponent = (function () {
     function ReCaptchaComponent(_zone, _captchaService) {
         this._zone = _zone;
@@ -123,14 +167,14 @@ exports.ReCaptchaComponent = ReCaptchaComponent;
 
 /***/ }),
 
-/***/ 153:
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var BehaviorSubject_1 = __webpack_require__(240);
+var BehaviorSubject_1 = __webpack_require__(270);
 /*
  * Common service shared by all reCaptcha component instances
  * through dependency injection.
@@ -191,7 +235,78 @@ exports.RECAPTCHA_SERVICE_PROVIDER = {
 
 /***/ }),
 
-/***/ 197:
+/***/ 268:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_login_service__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(99);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+// Services
+
+
+var LoginComponent = (function () {
+    function LoginComponent(navCtrl, toastCtrl, menu, loadingCtrl, _login, http) {
+        this.navCtrl = navCtrl;
+        this.toastCtrl = toastCtrl;
+        this.menu = menu;
+        this.loadingCtrl = loadingCtrl;
+        this._login = _login;
+        this.http = http;
+    }
+    LoginComponent.prototype.ionViewDidLoad = function () {
+        this.menu.swipeEnable(false);
+    };
+    LoginComponent.prototype.getRecaptcha = function (Code) {
+        this.RECaptchaCode = Code;
+    };
+    LoginComponent.prototype.doLogin = function () {
+        var _this = this;
+        this.ShowLoadingLogin = true;
+        this._login.doLogin(this.email, this.password, this.RECaptchaCode).subscribe(function (result) {
+            _this.menu.swipeEnable(true);
+            _this.navCtrl.setRoot('boards');
+        }, function (error) {
+            _this.toastCtrl.create({
+                message: "Login falhou, dados inválidos!",
+                duration: 4030,
+                position: 'bottom'
+            }).present();
+            _this.ShowLoadingLogin = false;
+        });
+    };
+    return LoginComponent;
+}());
+LoginComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPage */])({
+        name: "login",
+        segment: "login"
+    }),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'login',template:/*ion-inline-start:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/'<script src=\'https://www.google.com/recaptcha/api.js\'></script>\n<ion-content class="login">\n	<ion-grid fixed>\n		<ion-row>\n			<ion-col col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 col-xs-12>\n				<form #form="ngForm" (ngSubmit)="doLogin()">\n					<ion-item class="login-form-field">\n						<ion-label fixed>Login</ion-label>\n						<ion-input type="email" id="email" name="email"\n							placeholder="Digite seu login" [(ngModel)]="email">\n						</ion-input>\n					</ion-item>\n\n					<ion-item class="login-form-field">\n						<ion-label fixed>Senha</ion-label>              \n						<ion-input type="password" clearOnEdit="false" \n							placeholder="Digite sua senha"\n							name="password" [(ngModel)]="password">\n						</ion-input>\n					</ion-item>\n					<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					\n					<div class="login-submit">\n						<button id="submitLogin" ion-button full type="submit">\n							Entrar\n						</button>		\n						<div class="progress" *ngIf="ShowLoadingLogin">\n							<div class="indeterminate"></div>\n						</div>\n					</div>\n				</form>\n\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/register">Criar Conta</a>\n				</div>\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/recover/password">Esqueci minha senha</a>\n				</div>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _f || Object])
+], LoginComponent);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -201,8 +316,8 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var captcha_component_1 = __webpack_require__(152);
-var captcha_service_1 = __webpack_require__(153);
+var captcha_component_1 = __webpack_require__(266);
+var captcha_service_1 = __webpack_require__(267);
 var ReCaptchaModule = (function () {
     function ReCaptchaModule() {
     }
@@ -218,12 +333,12 @@ ReCaptchaModule.decorators = [
 /** @nocollapse */
 ReCaptchaModule.ctorParameters = function () { return []; };
 exports.ReCaptchaModule = ReCaptchaModule;
-__export(__webpack_require__(152));
+__export(__webpack_require__(266));
 
 
 /***/ }),
 
-/***/ 240:
+/***/ 270:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -233,8 +348,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(29);
-var ObjectUnsubscribedError_1 = __webpack_require__(108);
+var Subject_1 = __webpack_require__(30);
+var ObjectUnsubscribedError_1 = __webpack_require__(194);
 /**
  * @class BehaviorSubject<T>
  */
@@ -276,118 +391,6 @@ var BehaviorSubject = (function (_super) {
 }(Subject_1.Subject));
 exports.BehaviorSubject = BehaviorSubject;
 //# sourceMappingURL=BehaviorSubject.js.map
-
-/***/ }),
-
-/***/ 267:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BoardListComponentModule", function() { return BoardListComponentModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-var BoardListComponentModule = (function () {
-    function BoardListComponentModule() {
-    }
-    return BoardListComponentModule;
-}());
-BoardListComponentModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginComponent */]
-        ],
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginComponent */]),
-            __WEBPACK_IMPORTED_MODULE_3_angular2_recaptcha__["ReCaptchaModule"],
-        ],
-        entryComponents: [],
-        providers: []
-    })
-], BoardListComponentModule);
-
-//# sourceMappingURL=login.module.js.map
-
-/***/ }),
-
-/***/ 270:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_login_service__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(99);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-// Services
-
-
-var LoginComponent = (function () {
-    function LoginComponent(navCtrl, toastCtrl, menu, loadingCtrl, _login, http) {
-        this.navCtrl = navCtrl;
-        this.toastCtrl = toastCtrl;
-        this.menu = menu;
-        this.loadingCtrl = loadingCtrl;
-        this._login = _login;
-        this.http = http;
-    }
-    LoginComponent.prototype.ionViewDidLoad = function () {
-        this.menu.swipeEnable(false);
-    };
-    LoginComponent.prototype.doLogin = function () {
-        var _this = this;
-        this.ShowLoadingLogin = true;
-        this._login.doLogin(this.email, this.password).subscribe(function (result) {
-            _this.menu.swipeEnable(true);
-            _this.navCtrl.setRoot('boards');
-        }, function (error) {
-            _this.toastCtrl.create({
-                message: "Login falhou, dados inválidos!",
-                duration: 4030,
-                position: 'bottom'
-            }).present();
-            _this.ShowLoadingLogin = false;
-        });
-    };
-    return LoginComponent;
-}());
-LoginComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPage */])({
-        name: "login",
-        segment: "login"
-    }),
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'login',template:/*ion-inline-start:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/'<script src=\'https://www.google.com/recaptcha/api.js\'></script>\n<ion-content class="login">\n	<ion-grid fixed>\n		<ion-row>\n			<ion-col col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 col-xs-12>\n				<form #form="ngForm" (ngSubmit)="doLogin()">\n					<ion-item class="login-form-field">\n						<ion-label fixed>Login</ion-label>\n						<ion-input type="email" id="email" name="email"\n							placeholder="Digite seu login" [(ngModel)]="email">\n						</ion-input>\n					</ion-item>\n\n					<ion-item class="login-form-field">\n						<ion-label fixed>Senha</ion-label>              \n						<ion-input type="password" clearOnEdit="false" \n							placeholder="Digite sua senha"\n							name="password" [(ngModel)]="password">\n						</ion-input>\n					</ion-item>\n					<re-captcha site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					\n					<div class="login-submit">\n						<button id="submitLogin" ion-button full type="submit">\n							Entrar\n						</button>		\n						<div class="progress" *ngIf="ShowLoadingLogin">\n							<div class="indeterminate"></div>\n						</div>\n					</div>\n				</form>\n\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/register">Criar Conta</a>\n				</div>\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/recover/password">Esqueci minha senha</a>\n				</div>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _f || Object])
-], LoginComponent);
-
-var _a, _b, _c, _d, _e, _f;
-//# sourceMappingURL=login.js.map
 
 /***/ })
 
