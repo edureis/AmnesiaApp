@@ -25,6 +25,7 @@ export class LoginComponent {
 	password: string;
 	ShowLoadingLogin: boolean;
 	RECaptchaCode: string;
+	RECaptchaHtml: string;
 
     constructor(
         private navCtrl: NavController,
@@ -36,19 +37,23 @@ export class LoginComponent {
 	) { }
 
 	ionViewDidLoad() {
+		this.getRecaptchaHtml;
 		this.menu.swipeEnable(false);
 	}
 
 	private  getRecaptcha (Code: string):void{
 		this.RECaptchaCode  =  Code;
-
-  	}
-	 
+	  }
+	  
+	private  getRecaptchaHtml ():string{
+		return this.RECaptchaHtml;
+	} 
  
 	doLogin() {
 		this.ShowLoadingLogin = true;
-		this._login.doLogin(this.email, this.password, this.RECaptchaCode).subscribe(
+		this._login.doLogin(this.email, this.password, this.RECaptchaCode, this.RECaptchaHtml).subscribe(
 			result => {
+				this.RECaptchaHtml = '';
 				this.menu.swipeEnable(true);
 				this.navCtrl.setRoot('boards');
 			}, error => {
@@ -57,7 +62,9 @@ export class LoginComponent {
 					duration: 4030,
 					position: 'bottom'
 				}).present();
+				this.RECaptchaHtml = error.RECaptchaHtml;				
 				this.ShowLoadingLogin = false;
+				this.navCtrl.setRoot(this.navCtrl.getActive().component);
 			}
 		);	
 	}

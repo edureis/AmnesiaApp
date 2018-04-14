@@ -287,7 +287,7 @@ var LoginService = (function () {
         this._http = _http;
         this._app = _app;
     }
-    LoginService.prototype.doLogin = function (email, password, RECaptchaCode) {
+    LoginService.prototype.doLogin = function (email, password, RECaptchaCode, RECaptchaHtml) {
         var _this = this;
         return new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"](function (observer) {
             var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
@@ -314,6 +314,10 @@ var LoginService = (function () {
                     observer.error(false);
                 observer.complete();
             }, function (error) {
+                var response = error.json();
+                if (response['status'] == 401) {
+                    error.RECaptchaHtml = '<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>';
+                }
                 observer.error(false);
                 observer.complete();
             });

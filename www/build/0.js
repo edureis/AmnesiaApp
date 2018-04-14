@@ -268,15 +268,20 @@ var LoginComponent = (function () {
         this.http = http;
     }
     LoginComponent.prototype.ionViewDidLoad = function () {
+        this.getRecaptchaHtml;
         this.menu.swipeEnable(false);
     };
     LoginComponent.prototype.getRecaptcha = function (Code) {
         this.RECaptchaCode = Code;
     };
+    LoginComponent.prototype.getRecaptchaHtml = function () {
+        return this.RECaptchaHtml;
+    };
     LoginComponent.prototype.doLogin = function () {
         var _this = this;
         this.ShowLoadingLogin = true;
-        this._login.doLogin(this.email, this.password, this.RECaptchaCode).subscribe(function (result) {
+        this._login.doLogin(this.email, this.password, this.RECaptchaCode, this.RECaptchaHtml).subscribe(function (result) {
+            _this.RECaptchaHtml = '';
             _this.menu.swipeEnable(true);
             _this.navCtrl.setRoot('boards');
         }, function (error) {
@@ -285,7 +290,9 @@ var LoginComponent = (function () {
                 duration: 4030,
                 position: 'bottom'
             }).present();
+            _this.RECaptchaHtml = error.RECaptchaHtml;
             _this.ShowLoadingLogin = false;
+            _this.navCtrl.setRoot(_this.navCtrl.getActive().component);
         });
     };
     return LoginComponent;
@@ -296,7 +303,7 @@ LoginComponent = __decorate([
         segment: "login"
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'login',template:/*ion-inline-start:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/'<script src=\'https://www.google.com/recaptcha/api.js\'></script>\n<ion-content class="login">\n	<ion-grid fixed>\n		<ion-row>\n			<ion-col col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 col-xs-12>\n				<form #form="ngForm" (ngSubmit)="doLogin()">\n					<ion-item class="login-form-field">\n						<ion-label fixed>Login</ion-label>\n						<ion-input type="email" id="email" name="email"\n							placeholder="Digite seu login" [(ngModel)]="email">\n						</ion-input>\n					</ion-item>\n\n					<ion-item class="login-form-field">\n						<ion-label fixed>Senha</ion-label>              \n						<ion-input type="password" clearOnEdit="false" \n							placeholder="Digite sua senha"\n							name="password" [(ngModel)]="password">\n						</ion-input>\n					</ion-item>\n					<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					\n					<div class="login-submit">\n						<button id="submitLogin" ion-button full type="submit">\n							Entrar\n						</button>		\n						<div class="progress" *ngIf="ShowLoadingLogin">\n							<div class="indeterminate"></div>\n						</div>\n					</div>\n				</form>\n\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/register">Criar Conta</a>\n				</div>\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/recover/password">Esqueci minha senha</a>\n				</div>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/
+        selector: 'login',template:/*ion-inline-start:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/'<script src=\'https://www.google.com/recaptcha/api.js\'></script>\n<ion-content class="login">\n	<ion-grid fixed>\n		<ion-row>\n			<ion-col col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 col-xs-12>\n				<form #form="ngForm" (ngSubmit)="doLogin()">\n					<ion-item class="login-form-field">\n						<ion-label fixed>Login</ion-label>\n						<ion-input type="email" id="email" name="email"\n							placeholder="Digite seu login" [(ngModel)]="email">\n						</ion-input>\n					</ion-item>\n\n					<ion-item class="login-form-field">\n						<ion-label fixed>Senha</ion-label>              \n						<ion-input type="password" clearOnEdit="false" \n							placeholder="Digite sua senha"\n							name="password" [(ngModel)]="password">\n						</ion-input>\n					</ion-item>\n					{{getRecaptchaHTML}}\n   					<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					\n					<div class="login-submit">\n						<button id="submitLogin" ion-button full type="submit">\n							Entrar\n						</button>		\n						<div class="progress" *ngIf="ShowLoadingLogin">\n							<div class="indeterminate"></div>\n						</div>\n					</div>\n				</form>\n\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/register">Criar Conta</a>\n				</div>\n				<div class="bottom-block">\n					<a href="https://amnesia.servehttp.com/recover/password">Esqueci minha senha</a>\n				</div>\n			</ion-col>\n		</ion-row>\n	</ion-grid>\n</ion-content>'/*ion-inline-end:"/media/rosampa94/Lion man/Google Drive/Estudos/FATEC/TCC/Projeto/AmnesiaApp/src/pages/login/login.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* MenuController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_login_service__["a" /* LoginService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _f || Object])
 ], LoginComponent);

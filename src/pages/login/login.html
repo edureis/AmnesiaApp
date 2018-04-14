@@ -18,7 +18,8 @@
 							name="password" [(ngModel)]="password">
 						</ion-input>
 					</ion-item>
-					<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					
+					{{getRecaptchaHTML}}
+   					<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					
 					<div class="login-submit">
 						<button id="submitLogin" ion-button full type="submit">
 							Entrar
