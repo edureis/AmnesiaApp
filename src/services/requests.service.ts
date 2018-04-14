@@ -21,6 +21,7 @@ export class RequestService {
 		let token: string = localStorage.getItem('token') ? localStorage.getItem('token') : '';
 		myHeaders.set('Content-Type', 'application/json');
 		myHeaders.set('Authorization', token);
+		myHeaders.set('Access-Control-Allow-Origin', '*');
 		if (params == undefined) {
 			params = '';
 		};
@@ -38,7 +39,8 @@ export class RequestService {
 
 	post(url: string, params: string): Observable<Object> {
 		let headers = new Headers({
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*'
 		});
 		headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') ? localStorage.getItem('token') : '');
 		let options = new RequestOptions({ headers: headers });
@@ -57,7 +59,8 @@ export class RequestService {
 	delete(url: string, params?: string): Observable<Object> {
 		let headers = new Headers({
 			'Content-Type': 'application/json',
-			'X-HTTP-Method-Override': 'DELETE'
+			'X-HTTP-Method-Override': 'DELETE',
+			'Access-Control-Allow-Origin': '*'
 		});
 
 		headers.append('Authorization', 'Bearer ' + localStorage.getItem('token') ? localStorage.getItem('token') : '');

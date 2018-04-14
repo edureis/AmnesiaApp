@@ -1,3 +1,4 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <ion-content class="login">
 	<ion-grid fixed>
 		<ion-row>
@@ -17,7 +18,8 @@
 							name="password" [(ngModel)]="password">
 						</ion-input>
 					</ion-item>
-
+					{{getRecaptchaHTML}}
+   					<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>					
 					<div class="login-submit">
 						<button id="submitLogin" ion-button full type="submit">
 							Entrar
@@ -29,10 +31,10 @@
 				</form>
 
 				<div class="bottom-block">
-					<a href="">Criar Conta</a>
+					<a href="https://amnesia.servehttp.com/register">Criar Conta</a>
 				</div>
 				<div class="bottom-block">
-					<a href="">Esqueci minha senha</a>
+					<a href="https://amnesia.servehttp.com/recover/password">Esqueci minha senha</a>
 				</div>
 			</ion-col>
 		</ion-row>

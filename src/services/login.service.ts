@@ -3,8 +3,11 @@ import { Http, Headers,
          RequestOptions }   from '@angular/http';
 import { Observable }       from 'rxjs/Observable';
 import { AppService }       from './app.service';
+import { ViewChild }        from '@angular/core';
+import { ReCaptchaComponent } from 'angular2-recaptcha';
 
 @Injectable()
+
 export class LoginService {
 
     constructor(
@@ -12,31 +15,37 @@ export class LoginService {
         private _app: AppService,
     ) { }
 
-    doLogin(email: string, password: string): Observable<boolean> {
+    doLogin(email: string, password: string, RECaptchaCode: string, RECaptchaHtml: string): Observable<boolean> {
         return new Observable<boolean>(observer => {
             let headers = new Headers({
                 'Content-Type': 'application/json',
                 'Auth-Key': 'amnesia',
-                'Client-Service': 'frontend-client'
-            });
+                'Client-Service': 'frontend-client',
+                'Access-Control-Allow-Origin': '*'
+            });            
             let options = new RequestOptions({ headers: headers });
             let params: JSON = JSON.parse('{}');
             params["email"] = email;
             params["password"] = password;
+            params["recaptcha"] = RECaptchaCode;
             this._http.post(this._app.apiUrl() + '/auth/login', JSON.stringify(params), options)
                 .subscribe(
                     data => {
                         let response = data.json();
-                        if (response['status'] == 200 && response['message'] == 'Login autorizado.') {
+                        if (response['status'] == 200) {                            
                             localStorage.setItem('token', response['token']);
                             localStorage.setItem('user_id', response['id']);
                             localStorage.setItem('user_data', JSON.stringify(response['current-user']));
                             observer.next(true);
-                        }
+                        } 
                         else
                             observer.error(false);
                         observer.complete();
                     }, error => {
+                        let response = error.json();
+                        if (response['status'] == 401) {   
+                            error.RECaptchaHtml = '<re-captcha (captchaResponse)="getRecaptcha($event)" site_key="6Ldr4EIUAAAAANkL-L5Sd9ol003ysMfGzRWWflI7" language="pt-BR"></re-captcha>';
+                        }
                         observer.error(false);
                         observer.complete();
                     }
